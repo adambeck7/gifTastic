@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Giphy API</title>
+</head>
+
+<body>
+  <form id="gif-form">
+
+    <!-- Label for Text Box -->
+    <label for="gif-input">Create a gif</label>
+
+    <!-- Text Input Box -->
+    <input type="text" id="gif-input">
+    <br>
+
+    <!-- Submit Button -->
+    <input id="set-gif" type="submit" value="GO!">
+  </form>
+  <div id="button-div"></div>
+  <div id="gif-div"></div>
+  <div id="gif-display"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    var array = ["Rick & Morty", "Archer", "ATHF"];
+    var buttonCount = 0;
+    var inputGif = $("#gif-input").val().trim();
+
+    for (var i = 0; i < array.length; i++) {
+      $("#gif-display").append("<button>" + array[i]);
+    }
+
+
+    function searchGifs(searchTerm) {
+      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=k4ZXee2WvMvmYnO7KEc0mHRSEUHV87O7&tag=" + searchTerm;
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function (response) {
+        console.log(response);
+        var gifBox = $("<img>").attr("src", response.data.image_original_url);
+        // $("#gif-div").empty();
+        $("#gif-div").append(gifBox);
+      });
+    }
+
+
+    $("#set-gif").on("click", function (event) {
+
+      event.preventDefault();
+
+      inputGif = $("#gif-input").val().trim();
+
+      createButton(inputGif);
+
+    });
+
+    function createButton() {
+      buttonCount++;
+      var newButton = $("<input>").attr({
+        value: inputGif,
+        id: "added-button-" + buttonCount,
+        type: "submit"
+      });
+      $("#button-div").append(newButton);
+
+    }
+
+    $("#button-div").on("click", function (event) {
+
+      event.preventDefault();
+
+      inputGif = $(this).val();
+      console.log("button div click value=", inputGif);
+
+
+      searchGifs(inputGif);
+    });
+  </script>
+
+</body>
+
+</html>
