@@ -87,10 +87,13 @@
               data: response.data[j].rating,
               id: "added-button-" + buttonCount,
               type: "button",
-              class: "btn btn-primary",
-              src: response.data[j].images.original.url
+              class: "btn btn-primary addedGif",
+              src: response.data[j].images.original_still.url,
+              still: response.data[j].images.original_still.url,
+              animate: response.data[j].images.original.url,
+              state: "still"
             });
-            newDiv = $("<div id='new-id-" + buttonCount + "' " + "class='col-md-auto'>")
+            newDiv = $("<div id='new-id-" + buttonCount + "' " + "class='col-md-auto addedGif'>")
             $("#gif-div").append(newDiv);
             $(newDiv).html("rating: " + response.data[j].rating + "  ");
             // console.log(repsonse.data.rating)
@@ -145,7 +148,22 @@
         console.log("button div click value=", inputGif);
         searchGifs(inputGif);
       });
+      $("#gif-div").on("click", '*', function () {
+        console.log('test');
+        var state = $(this).attr("state");
+        // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+        // Then, set the image's data-state to animate
+        // Else set src to the data-still value
+        if (state === "still") {
+          $(this).attr("src", $(this).attr("animate"));
+          $(this).attr("state", "animate");
+        } else {
+          $(this).attr("src", $(this).attr("still"));
+          $(this).attr("state", "still");
+        }
+      });
       $("button").addClass("btn btn-primary");
+
 
       // $("#added-button-" + buttonCount).append(this.val());
     </script>
