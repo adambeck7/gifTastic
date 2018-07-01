@@ -58,7 +58,7 @@ html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     -ms-overflow-style: scrollbar;
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: transparent;
 }
 
 @-ms-viewport {
@@ -402,7 +402,7 @@ h6,
     font-family: "Cabin Sketch", cursive;
     font-weight: 500;
     line-height: 1.2;
-    color: inherit
+    color: inherit;
 }
 
 h1,
@@ -10110,4 +10110,8 @@ pre {
     max-width: 300px;
     max-height: 250px;
     padding: 10px;
+}
+
+.increaseSpace {
+    letter-spacing: 1px;
 }
