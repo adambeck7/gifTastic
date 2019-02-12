@@ -1,4 +1,4 @@
-      var topics = ["Rick and Morty", "Archer", "ATHF", "Futurama", "South Park", "The Simpsons", "King of the Hill",
+      var topics = ["Rick and Morty", "Archer", "Futurama", "South Park", "The Simpsons", "King of the Hill",
           "Bob's Burgers", "Family Guy", "Robot Chicken"
       ];
       var buttonCount = 0;
